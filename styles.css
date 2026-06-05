@@ -438,6 +438,63 @@ h3 {
   margin: 0;
 }
 
+/* Contact card styles */
+.contact-card {
+  padding: 1rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.contact-info h3 {
+  margin: 0 0 0.4rem;
+  color: #eff9ff;
+}
+
+.contact-blurb {
+  margin: 0;
+  color: #bcd3df;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  background: linear-gradient(150deg, rgba(12,20,28,0.82), rgba(16,28,36,0.86));
+  border: 1px solid rgba(96, 138, 160, 0.12);
+  color: #e6f4f8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-item:hover {
+  transform: translateY(-3px);
+}
+
+.ci-label {
+  font-family: "IBM Plex Mono", monospace;
+  color: #8fb0bf;
+  font-size: 0.8rem;
+  margin-right: 0.75rem;
+}
+
+.ci-value {
+  color: #dff3f7;
+  font-size: 0.95rem;
+}
+
 .skill-grid {
   display: grid;
   gap: 1rem;
@@ -455,6 +512,9 @@ h3 {
   --surface-3: rgba(10, 18, 28, 0.97);
   --halo-1: rgba(92, 176, 226, 0.18);
   --halo-2: rgba(0, 168, 150, 0.08);
+  --skill-chip-bg: linear-gradient(145deg, rgba(13, 46, 68, 0.82), rgba(12, 30, 45, 0.86));
+  --skill-chip-border: rgba(92, 176, 226, 0.22);
+  --skill-chip-text: #d8edf8;
 }
 
 .category-programming {
@@ -463,6 +523,9 @@ h3 {
   --surface-3: rgba(13, 16, 22, 0.97);
   --halo-1: rgba(255, 145, 54, 0.18);
   --halo-2: rgba(255, 190, 109, 0.08);
+  --skill-chip-bg: linear-gradient(145deg, rgba(74, 41, 20, 0.82), rgba(42, 24, 14, 0.86));
+  --skill-chip-border: rgba(255, 160, 72, 0.22);
+  --skill-chip-text: #f3ddc6;
 }
 
 .category-software {
@@ -471,6 +534,9 @@ h3 {
   --surface-3: rgba(10, 19, 19, 0.97);
   --halo-1: rgba(109, 191, 149, 0.16);
   --halo-2: rgba(0, 168, 150, 0.08);
+  --skill-chip-bg: linear-gradient(145deg, rgba(17, 58, 39, 0.82), rgba(13, 34, 25, 0.86));
+  --skill-chip-border: rgba(109, 191, 149, 0.22);
+  --skill-chip-text: #d8f0e3;
 }
 
 .skill-card h3 {
@@ -481,29 +547,22 @@ h3 {
   text-shadow: 0 0 16px rgba(255, 255, 255, 0.08);
 }
 
-.skill-card p {
-  margin: 0.45rem 0;
-  padding: 0.35rem 0.55rem;
-  border-radius: 8px;
-  background: rgba(14, 28, 40, 0.72);
-  border: 1px solid rgba(96, 148, 178, 0.24);
-  color: #c2d9e8;
-  font-size: 0.95rem;
+.skill-card .tag-row {
+  margin: 0.1rem 0 0;
+  gap: 0.5rem;
 }
 
-.category-equipment p {
-  background: linear-gradient(145deg, rgba(13, 46, 68, 0.78), rgba(12, 30, 45, 0.80));
-  border-color: rgba(92, 176, 226, 0.22);
+.skill-card .tag {
+  padding: 0.3rem 0.68rem;
+  font-size: 0.76rem;
+  line-height: 1.2;
+  background: var(--skill-chip-bg);
+  border-color: var(--skill-chip-border);
+  color: var(--skill-chip-text);
 }
 
-.category-programming p {
-  background: linear-gradient(145deg, rgba(74, 41, 20, 0.78), rgba(42, 24, 14, 0.80));
-  border-color: rgba(255, 160, 72, 0.22);
-}
-
-.category-software p {
-  background: linear-gradient(145deg, rgba(17, 58, 39, 0.78), rgba(13, 34, 25, 0.80));
-  border-color: rgba(109, 191, 149, 0.22);
+.skill-tags {
+  align-content: flex-start;
 }
 
 .cards-grid.reveal.is-visible .card {
