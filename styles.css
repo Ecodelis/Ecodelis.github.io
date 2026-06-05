@@ -204,15 +204,19 @@ h3 {
 }
 
 .cards-grid {
-  column-count: 2;
-  column-gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .cards-grid .card {
-  display: inline-block;
   width: 100%;
-  margin: 0 0 1rem;
-  break-inside: avoid;
+  margin: 0;
+}
+
+/* Make featured card span two columns on wider viewports */
+.card-featured {
+  grid-column: 1 / -1; /* span all columns */
 }
 
 .section-heading {
@@ -265,14 +269,16 @@ h3 {
 }
 
 .card h3 {
-  display: inline-block;
-  margin-bottom: 0.15rem;
-  color: transparent;
-  background: linear-gradient(90deg, #f5fbff 0%, #d6e7f1 55%, #f2e6d6 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 12px rgba(137, 204, 236, 0.08);
+  display: block;
+  margin: calc(-1 * 1.25rem) calc(-1 * 1.25rem) 0; /* pull to card edges */
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius) var(--radius) 0 0; /* rounded top corners, flat bottom */
+  background: linear-gradient(120deg, rgba(255,122,24,0.10), rgba(0,168,150,0.06));
+  color: #fff;
+  font-size: 1.05rem;
+  line-height: 1.05;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12) inset;
 }
 
 .card-featured {
@@ -378,11 +384,25 @@ h3 {
 }
 
 .meta {
-  margin: 0.4rem 0 0.8rem;
-  color: #84a0b4;
+  margin: 0.45rem 0 0.9rem;
   font-family: "IBM Plex Mono", monospace;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
+  display: inline-flex; /* inline-level layout, not a full-width block */
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0; /* remove pill padding */
+  background: transparent; /* not a block */
+  border: none;
+  box-shadow: none;
+  /* gradient text blending into page accents */
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 8px rgba(255,122,24,0.08);
 }
+
+.meta-sep { opacity: 0.85; }
 
 .card a {
   color: #80d8cf;
@@ -590,7 +610,7 @@ h3 {
 .media-grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(220, 1fr));
   align-items: start;
 }
 
@@ -830,7 +850,15 @@ h3 {
   }
 
   .cards-grid {
-    column-count: 1;
+    display: block; /* fall back to single-column flow */
+  }
+
+  .card-featured {
+    grid-column: auto; /* don't span on small screens */
+  }
+
+  .card h3, .card-featured h3 {
+    font-size: 1.05rem; /* keep titles consistent on small screens */
   }
 
   .profile {
