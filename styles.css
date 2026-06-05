@@ -275,7 +275,7 @@ h3 {
   border-radius: var(--radius) var(--radius) 0 0; /* rounded top corners, flat bottom */
   background: linear-gradient(120deg, rgba(255,122,24,0.10), rgba(0,168,150,0.06));
   color: #fff;
-  font-size: 1.05rem;
+  font-size: 1.2rem; /* uniform title size */
   line-height: 1.05;
   font-weight: 700;
   box-shadow: 0 6px 18px rgba(0,0,0,0.12) inset;
@@ -858,7 +858,7 @@ h3 {
   }
 
   .card h3, .card-featured h3 {
-    font-size: 1.05rem; /* keep titles consistent on small screens */
+    font-size: 1.2rem; /* keep titles consistent and uniform on small screens */
   }
 
   .profile {
