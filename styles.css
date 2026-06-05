@@ -204,10 +204,15 @@ h3 {
 }
 
 .cards-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
+  column-count: 2;
+  column-gap: 1rem;
+}
+
+.cards-grid .card {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 1rem;
+  break-inside: avoid;
 }
 
 .section-heading {
@@ -271,7 +276,6 @@ h3 {
 }
 
 .card-featured {
-  grid-column: 1 / -1;
   --surface-1: rgba(18, 30, 38, 0.95);
   --surface-2: rgba(13, 22, 30, 0.96);
   --surface-3: rgba(10, 18, 25, 0.97);
@@ -408,19 +412,6 @@ h3 {
   margin-top: 0.75rem;
   border-top: 1px dashed rgba(128, 159, 179, 0.5);
   padding-top: 0.75rem;
-}
-
-.detail-photo {
-  margin-top: 0.6rem;
-  min-height: 130px;
-  border-radius: 12px;
-  border: 1px solid rgba(91, 127, 151, 0.55);
-  background: linear-gradient(135deg, rgba(20, 45, 63, 0.94) 0%, rgba(17, 34, 48, 0.96) 100%);
-  color: #9fc5dc;
-  display: grid;
-  place-items: center;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.85rem;
 }
 
 .highlights {
@@ -780,7 +771,7 @@ h3 {
   }
 
   .cards-grid {
-    grid-template-columns: 1fr;
+    column-count: 1;
   }
 
   .profile {
