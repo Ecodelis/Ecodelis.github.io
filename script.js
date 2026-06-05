@@ -16,6 +16,15 @@ function isPointerInside(element) {
 
 function refreshHoverState() {
   popBoxes.forEach((card) => {
+    const rect = card.getBoundingClientRect();
+    const localX = lastPointerX === null ? 50 : ((lastPointerX - rect.left) / rect.width) * 100;
+    const localY = lastPointerY === null ? 50 : ((lastPointerY - rect.top) / rect.height) * 100;
+    const clampedX = Math.max(0, Math.min(100, localX));
+    const clampedY = Math.max(0, Math.min(100, localY));
+
+    card.style.setProperty('--mx', `${clampedX}%`);
+    card.style.setProperty('--my', `${clampedY}%`);
+
     const inside = isPointerInside(card) || card.matches(':hover');
     card.classList.toggle('cursor-hover', inside);
 
