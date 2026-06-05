@@ -209,6 +209,31 @@ h3 {
   gap: 1rem;
 }
 
+/* Make a card span the full width of the grid when given the `work-wide` class */
+.cards-grid > .card.work-wide {
+  grid-column: 1 / -1;
+}
+
+/* Stack work experiences as banner-like blocks (single-column vertical flow) */
+.work-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.6rem;
+}
+
+.work-stack .card {
+  width: 100%;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+/* Ensure stacked work items don't show media */
+.work-stack .card .card-media,
+.work-stack .card .media-grid {
+  display: none;
+}
+
 .cards-grid .card {
   width: 100%;
   margin: 0;
@@ -279,6 +304,46 @@ h3 {
   line-height: 1.05;
   font-weight: 700;
   box-shadow: 0 6px 18px rgba(0,0,0,0.12) inset;
+}
+
+/* New card header container: banner that includes title and meta */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: calc(-1 * 1.25rem) calc(-1 * 1.25rem) 0;
+  padding: 0.9rem 1.25rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: linear-gradient(120deg, rgba(255,122,24,0.12), rgba(255,122,24,0.03));
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12) inset;
+}
+
+.card-header h3 {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.card-header .meta {
+  margin-top: 0.45rem;
+  padding: 0;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  color: #ffd8b6; /* solid, readable orange-cream */
+  -webkit-text-fill-color: initial;
+  background: transparent;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.45);
+}
+
+.card-header .meta .meta-sep {
+  color: rgba(255,255,255,0.68);
+  opacity: 0.8;
 }
 
 /* Contact card title should be plain text, not the rounded banner */
