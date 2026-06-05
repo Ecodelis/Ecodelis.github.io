@@ -20,6 +20,8 @@
         <a href="#home">Home</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
@@ -39,8 +41,9 @@
         </div>
       </div>
 
-      <figure class="profile reveal delay-1">
-        <img src="assets/images/profile.jpg" alt="Portrait of Marcus Fu" loading="lazy" />
+      <figure class="profile pop-box reveal delay-1">
+        <img src="assets/images/profile.jpg" alt="Portrait of Marcus Fu" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+        <div class="profile-placeholder" style="display: none;">Photo: TBD</div>
       </figure>
     </section>
   </header>
@@ -48,52 +51,20 @@
   <main>
     <section class="section stack" id="experience">
       <div class="section-heading reveal">
-        <p class="eyebrow">Professional Summary</p>
-        <h2>Electrical Engineering Focus</h2>
+        <p class="eyebrow">Experience</p>
+        <h2>Work Experience</h2>
       </div>
 
-      <article class="card reveal">
-        <div>
-          <h3>Summary</h3>
-          <p>
-            Experienced in designing, integrating, and testing complex hardware and software solutions
-            for applied research and simulation projects.
-          </p>
-        </div>
-      </article>
-
-      <article class="card reveal">
-        <div>
-          <h3>Technical Skills</h3>
-          <p class="meta">Equipment</p>
-          <p>Oscilloscopes, Logic Analyzer, Spectrum Analyzer, Multimeter, AD2, PLC</p>
-          <p class="meta">Programming</p>
-          <p>C, C++, Python, VBA, SystemVerilog, SCL, Ladder Logic</p>
-          <p class="meta">Software</p>
-          <p>MS Office Suite, CISCO Packet Tracer, Siemens TIA Portal, SOLIDWORKS, KiCad, MATLAB, DeltaV</p>
-        </div>
-      </article>
-
-      <article class="card reveal">
-        <div>
-          <h3>Education</h3>
-          <p class="meta">Bachelor of Engineering in Electrical Engineering | 2022 - Present</p>
-          <p>British Columbia Institute of Technology, Burnaby, British Columbia</p>
-          <p>
-            Relevant coursework: Communication Networks, Digital System Design, Signal Processing and Filters,
-            Analog and Digital Communication, PLC, Sensors for Measurement and Control.
-          </p>
-        </div>
-      </article>
-
-      <article class="card reveal">
+      <article class="card pop-box reveal">
         <div>
           <h3>FSA Student Researcher</h3>
           <p class="meta">Smart Microgrid Applied Research Team | Burnaby, British Columbia | May 2025 - Ongoing</p>
-          <p>
+          <p class="card-summary">
             Implemented IEC 61850 GOOSE and Sampled Values communication in C++ to enable Python-based AI control of
             a Real Time Digital Simulator (RTDS).
           </p>
+          <button class="toggle-btn" data-target="fsa-details" aria-expanded="false">More details</button>
+          <div class="card-details hidden" id="fsa-details">
           <p>
             Developed web-based Digital Twin environments with online and offline support, using Modbus and Excel
             spreadsheets for bidirectional data exchange.
@@ -106,39 +77,47 @@
             Created 3D Digital Twin models in SketchUp and MicroStation for visualization and monitoring of BCIT&apos;s
             OASIS smart microgrid system.
           </p>
+          <div class="detail-photo">Photo: TBD</div>
+          </div>
         </div>
       </article>
 
-      <article class="card reveal">
+        <article class="card pop-box reveal">
         <div>
           <h3>Warehouse Associate</h3>
           <p class="meta">ARITZIA Warehouse Sale | Canada Place, Vancouver, British Columbia | Aug-Sep 2022, 2023</p>
-          <p>
+          <p class="card-summary">
             Managed apparel processing and inventory organization while assisting customers on the sales floor.
           </p>
+          <button class="toggle-btn" data-target="warehouse-details" aria-expanded="false">More details</button>
+          <div class="card-details hidden" id="warehouse-details">
           <p>
             Transported and staged heavy goods using on-site equipment such as pallet jacks while following safety procedures.
           </p>
           <p>
             Maintained productivity and attention to detail while performing repetitive tasks for extended periods.
           </p>
+          <div class="detail-photo">Photo: TBD</div>
+          </div>
         </div>
       </article>
     </section>
 
     <section class="section stack" id="projects">
       <div class="section-heading reveal">
-        <p class="eyebrow">Competitions and Projects</p>
-        <h2>Hands-On Engineering Work</h2>
+        <p class="eyebrow">Selected Work</p>
+        <h2>Competitions and Projects</h2>
       </div>
 
-      <article class="card reveal">
+      <article class="card pop-box reveal">
         <div>
           <h3>Western Engineering Competition (WEC)</h3>
           <p class="meta">R&amp;D / Senior Programmer | Jan 2025</p>
-          <p>
+          <p class="card-summary">
             Competed against the top nine teams in Western Canada in the Programming category.
           </p>
+          <button class="toggle-btn" data-target="wec-details" aria-expanded="false">More details</button>
+          <div class="card-details hidden" id="wec-details">
           <p>
             Developed a MATLAB optimization algorithm to determine fire hall placements for urban expansion,
             balancing cost, computational efficiency, and long-term land development impacts.
@@ -146,48 +125,122 @@
           <p>
             Collaborated with teammates to evaluate multiple urban planning solutions under strict time constraints.
           </p>
+          <div class="detail-photo">Photo: TBD</div>
+          </div>
         </div>
       </article>
 
-      <article class="card reveal">
+        <article class="card pop-box reveal">
         <div>
           <h3>BCIT Engineering Competition (BEC)</h3>
           <p class="meta">Sensor Calibration and Integration | Nov 2024</p>
-          <p>
+          <p class="card-summary">
             Competed in the Senior Design category to develop a transport vehicle intended to assist injured individuals.
           </p>
+          <button class="toggle-btn" data-target="bec-details" aria-expanded="false">More details</button>
+          <div class="card-details hidden" id="bec-details">
           <p>
             Designed and implemented sensor logic for IR and ultrasonic detection using an Arduino Uno (R3).
           </p>
+          <div class="detail-photo">Photo: TBD</div>
+          </div>
         </div>
       </article>
 
-      <article class="card reveal">
+      <article class="card pop-box reveal">
         <div>
           <h3>Supercritical CO2 Battery Recycling</h3>
           <p class="meta">Ongoing Capstone | Sep 2025 - Present</p>
-          <p>
+          <p class="card-summary">
             Coordinating project planning and scheduling to meet deliverables while maintaining technical
             and goal alignment across multidisciplinary teams.
           </p>
+          <button class="toggle-btn" data-target="capstone-details" aria-expanded="false">More details</button>
+          <div class="card-details hidden" id="capstone-details">
           <p>
             Currently designing P&amp;IDs and control strategies for the recycling process using DeltaV.
           </p>
+          <div class="detail-photo">Photo: TBD</div>
+          </div>
         </div>
       </article>
 
-      <article class="card reveal">
+      <article class="card pop-box reveal">
         <div>
           <h3>Radio-Controlled Car: Autonomous and Manual Control</h3>
           <p class="meta">May 2024</p>
-          <p>
+          <p class="card-summary">
             Used SOLIDWORKS and KiCad to design the chassis and a single-layer PCB.
           </p>
+          <button class="toggle-btn" data-target="rccar-details" aria-expanded="false">More details</button>
+          <div class="card-details hidden" id="rccar-details">
           <p>
             Programmed autonomous driving and firing mode using image processing algorithms to detect ArUco targets.
           </p>
           <p>
             Established TCP/IP communication to provide real-time viewing from the mounted camera.
+          </p>
+          <div class="detail-photo">Photo: TBD</div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section stack" id="skills">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Technical Skills</p>
+        <h2>Tooling and Technologies</h2>
+      </div>
+
+      <div class="skill-grid reveal">
+        <article class="card skill-card pop-box">
+          <h3>Equipment</h3>
+          <p>Oscilloscopes</p>
+          <p>Logic Analyzer</p>
+          <p>Spectrum Analyzer</p>
+          <p>Multimeter</p>
+          <p>AD2</p>
+          <p>PLC</p>
+        </article>
+
+        <article class="card skill-card pop-box">
+          <h3>Programming</h3>
+          <p>C</p>
+          <p>C++</p>
+          <p>Python</p>
+          <p>VBA</p>
+          <p>SystemVerilog</p>
+          <p>SCL</p>
+          <p>Ladder Logic</p>
+        </article>
+
+        <article class="card skill-card pop-box">
+          <h3>Software</h3>
+          <p>MS Office Suite</p>
+          <p>CISCO Packet Tracer</p>
+          <p>Siemens TIA Portal</p>
+          <p>SOLIDWORKS</p>
+          <p>KiCad</p>
+          <p>MATLAB</p>
+          <p>DeltaV</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section stack" id="education">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Education</p>
+        <h2>Academic Background</h2>
+      </div>
+
+      <article class="card pop-box reveal">
+        <div>
+          <h3>Bachelor of Engineering in Electrical Engineering</h3>
+          <p class="meta">British Columbia Institute of Technology | 2022 - Present</p>
+          <p>Burnaby, British Columbia</p>
+          <p>
+            Relevant coursework: Communication Networks, Digital System Design, Signal Processing and Filters,
+            Analog and Digital Communication, PLC, Sensors for Measurement and Control.
           </p>
         </div>
       </article>
@@ -196,12 +249,14 @@
     <section class="section about" id="about">
       <div class="section-heading reveal">
         <p class="eyebrow">About</p>
-        <h2>Applied Research and Engineering Development</h2>
+        <h2>About Marcus Fu</h2>
       </div>
-      <p class="reveal">
-        My background combines communications, controls, simulation, and embedded development for power and automation contexts.
-        I focus on building reliable implementations that move from concept to tested, usable systems.
-      </p>
+      <article class="card pop-box reveal about-card">
+        <p>
+          My background combines communications, controls, simulation, and embedded development for power and automation contexts.
+          I focus on building reliable implementations that move from concept to tested, usable systems.
+        </p>
+      </article>
     </section>
 
     <section class="section contact" id="contact">
@@ -209,10 +264,10 @@
         <p class="eyebrow">Contact</p>
         <h2>Marcus Fu</h2>
       </div>
-      <ul class="contact-list reveal">
-        <li>Email: <a href="mailto:Marcusfu782@gmail.com">Marcusfu782@gmail.com</a></li>
-        <li>LinkedIn: <a href="https://linkedin.com/in/marcusfu/" target="_blank" rel="noopener">linkedin.com/in/marcusfu/</a></li>
-        <li>Phone: 604-783-9307</li>
+        <ul class="contact-list reveal">
+          <li>Email: <a href="mailto:Marcusfu782@gmail.com">Marcusfu782@gmail.com</a></li>
+          <li>LinkedIn: <a href="https://linkedin.com/in/marcusfu/" target="_blank" rel="noopener">linkedin.com/in/marcusfu/</a></li>
+          <li>Phone: 604-783-9307</li>
       </ul>
     </section>
   </main>

@@ -186,6 +186,17 @@ h3 {
   object-fit: cover;
 }
 
+.profile-placeholder {
+  min-height: 420px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1rem;
+  color: #9ec6de;
+  background: linear-gradient(140deg, #10202c 0%, #162d3d 100%);
+}
+
 .stack {
   display: grid;
   gap: 1rem;
@@ -205,9 +216,61 @@ h3 {
   border: 1px solid #d9cdbd;
 }
 
+.pop-box {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.pop-box:hover {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.pop-box.cursor-hover {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.pop-box.details-open {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.pop-box.force-hover {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.pop-box[data-details-open="true"],
+.pop-box:has(.card-details:not(.hidden)) {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.pop-box:active {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.pop-box:focus-within {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
 .card p {
   line-height: 1.65;
   margin: 0.65rem 0;
+}
+
+.media-status {
+  margin-top: 0.9rem;
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  color: #5f4c32;
+  background: #f6dfbe;
+  border: 1px solid #dfc69f;
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
 }
 
 .meta {
@@ -223,17 +286,41 @@ h3 {
 }
 
 .toggle-btn {
-  border: none;
+  border: 1px solid #0f304a;
   border-radius: 10px;
-  background: #12344f;
+  background: #163e5f;
   color: #f4f7fa;
   font-weight: 700;
   padding: 0.55rem 0.9rem;
   cursor: pointer;
+  margin-top: 0.4rem;
 }
 
 .toggle-btn:hover {
-  background: #0f2b42;
+  background: #0f2f48;
+}
+
+.card-summary {
+  margin-bottom: 0.35rem;
+}
+
+.card-details {
+  margin-top: 0.75rem;
+  border-top: 1px dashed #c8b9a4;
+  padding-top: 0.75rem;
+}
+
+.detail-photo {
+  margin-top: 0.6rem;
+  min-height: 130px;
+  border-radius: 12px;
+  border: 1px solid #dfc69f;
+  background: linear-gradient(135deg, #f3dfc1 0%, #ebd0a8 100%);
+  color: #5f4c32;
+  display: grid;
+  place-items: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.85rem;
 }
 
 .highlights {
@@ -256,9 +343,37 @@ h3 {
   line-height: 1.8;
 }
 
+.about-card p {
+  margin: 0;
+}
+
+.skill-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.skill-card {
+  background: linear-gradient(180deg, #f8f1e6 0%, #efe4d2 100%);
+  border-color: #e5d4bc;
+}
+
+.skill-card h3 {
+  margin-bottom: 0.65rem;
+}
+
+.skill-card p {
+  margin: 0.45rem 0;
+  padding: 0.35rem 0.55rem;
+  border-radius: 8px;
+  background: #fdf9f3;
+  border: 1px solid #e7dac9;
+  font-size: 0.95rem;
+}
+
 .contact-list {
-  list-style: none;
-  padding: 0;
+  list-style: disc;
+  padding-left: 1.15rem;
   margin: 0;
   display: grid;
   gap: 0.7rem;
@@ -290,6 +405,42 @@ h3 {
   transform: translateY(0);
 }
 
+.reveal.is-visible.pop-box:hover {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.reveal.is-visible.pop-box.cursor-hover {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.reveal.is-visible.pop-box.details-open {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.reveal.is-visible.pop-box.force-hover {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.reveal.is-visible.pop-box[data-details-open="true"],
+.reveal.is-visible.pop-box:has(.card-details:not(.hidden)) {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.reveal.is-visible.pop-box:active {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
+.reveal.is-visible.pop-box:focus-within {
+  transform: translateY(-7px) scale(1.01);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.34);
+}
+
 @media (max-width: 880px) {
   .menu-btn {
     display: inline-flex;
@@ -317,8 +468,14 @@ h3 {
     gap: 1rem;
   }
 
+  .skill-grid {
+    grid-template-columns: 1fr;
+  }
+
   .profile {
     justify-self: start;
     width: min(100%, 430px);
   }
+
 }
+
