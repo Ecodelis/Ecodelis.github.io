@@ -86,6 +86,76 @@ if (menuBtn && menu) {
   });
 }
 
+const cardMediaLibrary = {
+  fsa: [
+    { type: 'image', src: 'assets/images/test.jpg', title: 'FSA Student Researcher - Photo', alt: 'FSA media preview' },
+    { type: 'video', src: 'assets/images/test.mp4', title: 'FSA Student Researcher - Video' }
+  ],
+  warehouse: [
+    { type: 'image', src: 'assets/images/test.jpg', title: 'Warehouse Associate - Photo', alt: 'Warehouse media preview' },
+    { type: 'video', src: 'assets/images/test.mp4', title: 'Warehouse Associate - Video' }
+  ],
+  wec: [
+    { type: 'image', src: 'assets/images/test.jpg', title: 'WEC - Photo', alt: 'WEC media preview' },
+    { type: 'video', src: 'assets/images/test.mp4', title: 'WEC - Video' }
+  ],
+  bec: [
+    { type: 'image', src: 'assets/images/test.jpg', title: 'BEC - Photo', alt: 'BEC media preview' },
+    { type: 'video', src: 'assets/images/test.mp4', title: 'BEC - Video' }
+  ],
+  capstone: [
+    { type: 'image', src: 'assets/images/test.jpg', title: 'Supercritical CO2 Battery Recycling - Photo', alt: 'Capstone media preview' },
+    { type: 'video', src: 'assets/images/test.mp4', title: 'Supercritical CO2 Battery Recycling - Video' }
+  ],
+  rccar: [
+    { type: 'image', src: 'assets/images/test.jpg', title: 'Radio-Controlled Car - Photo', alt: 'RC car media preview' },
+    { type: 'video', src: 'assets/images/test.mp4', title: 'Radio-Controlled Car - Video' }
+  ]
+};
+
+function buildCardMediaItem(item) {
+  const button = document.createElement('button');
+  button.className = 'media-item inline-media';
+  button.type = 'button';
+  button.setAttribute('data-type', item.type);
+  button.setAttribute('data-src', item.src);
+  button.setAttribute('data-title', item.title || 'Media Viewer');
+
+  if (item.type === 'video') {
+    const video = document.createElement('video');
+    video.muted = true;
+    video.preload = 'metadata';
+    video.playsInline = true;
+    const source = document.createElement('source');
+    source.src = item.src;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    button.appendChild(video);
+  } else {
+    const img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.alt || item.title || 'Card media preview';
+    img.loading = 'lazy';
+    button.appendChild(img);
+  }
+
+  return button;
+}
+
+function renderCardMedia() {
+  const mediaContainers = document.querySelectorAll('.card-media[data-media-key]');
+  mediaContainers.forEach((container) => {
+    const key = container.getAttribute('data-media-key') || '';
+    const items = cardMediaLibrary[key] || [];
+    container.innerHTML = '';
+    items.forEach((item) => {
+      container.appendChild(buildCardMediaItem(item));
+    });
+  });
+}
+
+renderCardMedia();
+
 document.querySelectorAll('.toggle-btn').forEach((button) => {
   button.addEventListener('click', (event) => {
     const targetId = button.getAttribute('data-target');
@@ -98,6 +168,36 @@ document.querySelectorAll('.toggle-btn').forEach((button) => {
     button.setAttribute('aria-expanded', String(!hidden));
 
     const card = button.closest('article.card') || button.closest('.pop-box');
+    const contentBlock = button.parentElement;
+    const mediaBlock = contentBlock ? contentBlock.querySelector('.card-media') : null;
+
+    // Layout behavior requested:
+    // collapsed: More details button above media
+    // expanded: details content -> Less details button -> media
+    if (contentBlock && mediaBlock) {
+      if (panel.contains(mediaBlock)) {
+        contentBlock.insertBefore(mediaBlock, panel);
+      }
+
+      if (!hidden) {
+        if (panel.parentElement === contentBlock && panel.nextElementSibling !== button) {
+          contentBlock.insertBefore(panel, button);
+        }
+
+        if (button.nextElementSibling !== mediaBlock) {
+          contentBlock.insertBefore(mediaBlock, button.nextSibling);
+        }
+      } else {
+        if (button.nextElementSibling !== mediaBlock) {
+          contentBlock.insertBefore(mediaBlock, button.nextSibling);
+        }
+
+        if (panel.parentElement === contentBlock && panel.previousElementSibling !== mediaBlock) {
+          contentBlock.insertBefore(panel, mediaBlock.nextSibling);
+        }
+      }
+    }
+
     if (card) {
       card.classList.toggle('details-open', !hidden);
       card.setAttribute('data-details-open', String(!hidden));
@@ -146,4 +246,129 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((element) => {
   observer.observe(element);
+});
+
+const mediaItems = Array.from(document.querySelectorAll('.media-item'));
+const lightbox = document.getElementById('lightbox');
+const lightboxStage = document.getElementById('lightbox-stage');
+const lightboxTitle = document.getElementById('lightbox-title');
+const lbZoomIn = document.getElementById('lb-zoom-in');
+const lbZoomOut = document.getElementById('lb-zoom-out');
+const lbZoomReset = document.getElementById('lb-zoom-reset');
+const lbClose = document.getElementById('lb-close');
+
+let lightboxMedia = null;
+let lightboxZoom = 1;
+
+function applyLightboxZoom() {
+  if (!lightboxMedia) return;
+  lightboxMedia.style.transform = `scale(${lightboxZoom})`;
+  lbZoomReset.textContent = `${Math.round(lightboxZoom * 100)}%`;
+}
+
+function closeLightbox() {
+  if (!lightbox || !lightboxStage) return;
+  if (lightboxMedia && lightboxMedia.tagName === 'VIDEO') {
+    lightboxMedia.pause();
+  }
+  lightboxMedia = null;
+  lightboxZoom = 1;
+  lightboxStage.innerHTML = '';
+  lightbox.classList.add('hidden');
+  lightbox.setAttribute('aria-hidden', 'true');
+}
+
+function openLightbox(type, src, titleText) {
+  if (!lightbox || !lightboxStage) return;
+
+  lightboxZoom = 1;
+  lightboxStage.innerHTML = '';
+
+  if (type === 'video') {
+    const video = document.createElement('video');
+    video.className = 'lb-media video';
+    video.controls = true;
+    video.src = src;
+    video.preload = 'metadata';
+    video.playsInline = true;
+    lightboxMedia = video;
+  } else {
+    const img = document.createElement('img');
+    img.className = 'lb-media image';
+    img.src = src;
+    img.alt = titleText || 'Expanded gallery image';
+    img.draggable = false;
+    lightboxMedia = img;
+  }
+
+  lightboxStage.appendChild(lightboxMedia);
+  applyLightboxZoom();
+
+  if (lightboxTitle) {
+    lightboxTitle.textContent = titleText || 'Media Viewer';
+  }
+
+  lightbox.classList.remove('hidden');
+  lightbox.setAttribute('aria-hidden', 'false');
+}
+
+mediaItems.forEach((item) => {
+  item.addEventListener('click', () => {
+    const type = item.getAttribute('data-type') || 'image';
+    const src = item.getAttribute('data-src') || '';
+    const titleText = item.getAttribute('data-title') || 'Media Viewer';
+    if (!src) return;
+    openLightbox(type, src, titleText);
+  });
+});
+
+if (lbZoomIn) {
+  lbZoomIn.addEventListener('click', () => {
+    lightboxZoom = Math.min(3, lightboxZoom + 0.2);
+    applyLightboxZoom();
+  });
+}
+
+if (lbZoomOut) {
+  lbZoomOut.addEventListener('click', () => {
+    lightboxZoom = Math.max(0.6, lightboxZoom - 0.2);
+    applyLightboxZoom();
+  });
+}
+
+if (lbZoomReset) {
+  lbZoomReset.addEventListener('click', () => {
+    lightboxZoom = 1;
+    applyLightboxZoom();
+  });
+}
+
+if (lbClose) {
+  lbClose.addEventListener('click', closeLightbox);
+}
+
+if (lightbox) {
+  lightbox.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (target.dataset.close === 'true') {
+      closeLightbox();
+    }
+  });
+}
+
+if (lightboxStage) {
+  lightboxStage.addEventListener('wheel', (event) => {
+    if (!lightboxMedia) return;
+    event.preventDefault();
+    const delta = event.deltaY < 0 ? 0.12 : -0.12;
+    lightboxZoom = Math.max(0.6, Math.min(3, lightboxZoom + delta));
+    applyLightboxZoom();
+  }, { passive: false });
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) {
+    closeLightbox();
+  }
 });

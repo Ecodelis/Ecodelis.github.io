@@ -20,6 +20,7 @@
         <a href="#home">Home</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#media">Media</a>
         <a href="#skills">Skills</a>
         <a href="#education">Education</a>
         <a href="#about">About</a>
@@ -74,6 +75,7 @@
             a Real Time Digital Simulator (RTDS).
           </p>
           <button class="toggle-btn" data-target="fsa-details" aria-expanded="false">More details</button>
+          <div class="card-media" data-media-key="fsa"></div>
           <div class="card-details hidden" id="fsa-details">
           <p>
             Developed web-based Digital Twin environments with online and offline support, using Modbus and Excel
@@ -106,6 +108,7 @@
             Managed apparel processing and inventory organization while assisting customers on the sales floor.
           </p>
           <button class="toggle-btn" data-target="warehouse-details" aria-expanded="false">More details</button>
+          <div class="card-media" data-media-key="warehouse"></div>
           <div class="card-details hidden" id="warehouse-details">
           <p>
             Transported and staged heavy goods using on-site equipment such as pallet jacks while following safety procedures.
@@ -143,6 +146,7 @@
             Competed against the top nine teams in Western Canada in the Programming category.
           </p>
           <button class="toggle-btn" data-target="wec-details" aria-expanded="false">More details</button>
+          <div class="card-media" data-media-key="wec"></div>
           <div class="card-details hidden" id="wec-details">
           <p>
             Developed a MATLAB optimization algorithm to determine fire hall placements for urban expansion,
@@ -170,6 +174,7 @@
             Competed in the Senior Design category to develop a transport vehicle intended to assist injured individuals.
           </p>
           <button class="toggle-btn" data-target="bec-details" aria-expanded="false">More details</button>
+          <div class="card-media" data-media-key="bec"></div>
           <div class="card-details hidden" id="bec-details">
           <p>
             Designed and implemented sensor logic for IR and ultrasonic detection using an Arduino Uno (R3).
@@ -194,6 +199,7 @@
             and goal alignment across multidisciplinary teams.
           </p>
           <button class="toggle-btn" data-target="capstone-details" aria-expanded="false">More details</button>
+          <div class="card-media" data-media-key="capstone"></div>
           <div class="card-details hidden" id="capstone-details">
           <p>
             Currently designing P&amp;IDs and control strategies for the recycling process using DeltaV.
@@ -218,6 +224,7 @@
             Used SOLIDWORKS and KiCad to design the chassis and a single-layer PCB.
           </p>
           <button class="toggle-btn" data-target="rccar-details" aria-expanded="false">More details</button>
+          <div class="card-media" data-media-key="rccar"></div>
           <div class="card-details hidden" id="rccar-details">
           <p>
             Programmed autonomous driving and firing mode using image processing algorithms to detect ArUco targets.
@@ -270,6 +277,27 @@
           <p>MATLAB</p>
           <p>DeltaV</p>
         </article>
+      </div>
+    </section>
+
+    <section class="section stack" id="media">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Media</p>
+        <h2>Photo and Video Gallery</h2>
+      </div>
+
+      <div class="media-grid reveal">
+        <button class="media-item pop-box" type="button" data-type="image" data-src="assets/images/test.jpg" data-title="Test Photo">
+          <img src="assets/images/test.jpg" alt="Gallery test image" loading="lazy" />
+          <span class="media-label">Test Photo</span>
+        </button>
+
+        <button class="media-item pop-box" type="button" data-type="video" data-src="assets/images/test.mp4" data-title="Test Video">
+          <video muted preload="metadata" playsinline>
+            <source src="assets/images/test.mp4" type="video/mp4" />
+          </video>
+          <span class="media-label">Test Video</span>
+        </button>
       </div>
     </section>
 
@@ -327,6 +355,22 @@
   <footer class="site-footer">
     <p>&copy; 2026 Marcus Fu. All rights reserved.</p>
   </footer>
+
+  <div class="lightbox hidden" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" data-close="true"></div>
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Media viewer">
+      <div class="lightbox-toolbar">
+        <p class="lightbox-title" id="lightbox-title">Media Viewer</p>
+        <div class="lightbox-controls">
+          <button type="button" class="lb-btn" id="lb-zoom-out" aria-label="Zoom out">-</button>
+          <button type="button" class="lb-btn" id="lb-zoom-reset" aria-label="Reset zoom">100%</button>
+          <button type="button" class="lb-btn" id="lb-zoom-in" aria-label="Zoom in">+</button>
+          <button type="button" class="lb-btn" id="lb-close" aria-label="Close viewer">Close</button>
+        </div>
+      </div>
+      <div class="lightbox-stage" id="lightbox-stage"></div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
