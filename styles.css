@@ -281,6 +281,19 @@ h3 {
   box-shadow: 0 6px 18px rgba(0,0,0,0.12) inset;
 }
 
+/* Contact card title should be plain text, not the rounded banner */
+.contact-card h3 {
+  margin: 0 0 0.6rem; /* keep small spacing */
+  padding: 0; /* no banner padding */
+  border-radius: 0; /* no rounded corners */
+  background: transparent; /* no background */
+  box-shadow: none;
+  color: #eff9ff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: block;
+}
+
 .card-featured {
   --surface-1: rgba(18, 30, 38, 0.95);
   --surface-2: rgba(13, 22, 30, 0.96);
