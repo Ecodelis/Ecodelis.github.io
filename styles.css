@@ -245,7 +245,34 @@ h3 {
 }
 
 .section-heading {
-  margin: 1rem 0 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.25rem 0 0.85rem;
+}
+
+.section-heading h2 {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: #eef7f8;
+  padding-left: 0.9rem;
+  border-left: 3px solid rgba(0, 168, 150, 0.7);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.section-heading::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  min-width: 2rem;
+  margin-top: 0.15rem;
+  background: linear-gradient(90deg, rgba(0, 168, 150, 0.55) 0%, rgba(255, 122, 24, 0.22) 55%, rgba(255, 122, 24, 0) 100%);
+  opacity: 0.75;
 }
 
 .card {
